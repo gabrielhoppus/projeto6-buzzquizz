@@ -134,3 +134,10 @@ header img{
     left: 16px;
     color: #FFFFFF;
 }
+
+.quizz-pic{
+    width: 340px;
+    height: 181px;
+    opacity: 0.9;
+    border-radius: 5px;
+}
