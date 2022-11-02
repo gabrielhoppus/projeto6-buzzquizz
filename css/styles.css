@@ -1,11 +1,10 @@
-/*font-family: 'Roboto', sans-serif;*/
 body{
     width: 100%;
     height: 100%;
     background-color: #FAFAFA;
-    overflow: scroll;
     align-items: center;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 header{
@@ -15,6 +14,8 @@ header{
     text-align: center;
     align-items: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 header img{
@@ -23,13 +24,113 @@ header img{
     height: 43px;
 }
 
-.user_quiz{
+.main_body{
+    max-width: 1051px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.no_quizzes{
     background-color: #FAFAFA;
-    width: 1051px;
+    max-width: 1051px;
     height: 181px;
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
     margin-top: 77px;
     margin-left: auto;
     margin-right: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.no_quizzes p{
+    width: 250px;
+    height: 107px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    color: #B9B9B9;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
+}
+
+.no_quizzes button{
+    width: 151px;
+    height: 40px;
+    border: 1px dashed #EC362D;
+    border-radius: 75px;
+    background-color: #FAFAFA;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #EC362D;
+}
+
+.hidden{
+    display: none;
+}
+
+.created_quizzes_header{
+    display: flex;
+    align-items: center;
+    margin-top: 65px;
+    margin-bottom: 10px;
+}
+
+.premade_quizzes_header{
+    margin-top: 48px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.premade_quizzes{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.created_quizzes{
+    display: flex;
+    gap: 15px;
+}
+
+.created_quizzes_header p,
+.premade_quizzes_header p{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+}
+
+.add_icon{
+    width: 31px;
+    height: 30px;
+    margin-left: 17px;
+    cursor: pointer;
+}
+
+
+.quizz_box{
+    width: 340px;
+    height: 181px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.quizz_box span{
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    color: #FFFFFF;
 }
