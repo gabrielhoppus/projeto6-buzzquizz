@@ -20,7 +20,137 @@
     <header>
         <img src="../assets/logo.png">
     </header>
-    <div class=""></div>
+    <div class="create_body">
+        <div class="first_screen hidden">
+            <p>Comece pelo começo</p>
+            <div class="input_container_first">
+                <input class="quizz_input quizz_title" type="text" placeholder="Título do seu quizz">
+                <input class="quizz_input quizz_url" type="text" placeholder="URL da imagem do seu quizz">
+                <input class="quizz_input quizz_questions" type="text" placeholder="Quantidade de perguntas do quizz">
+                <input class="quizz_input quizz_level" type="text" placeholder="Quantidade de níveis do quizz">
+            </div>
+            <button onclick="StartQuizz()">Prosseguir para criar perguntas</button>
+        </div>
+        <div class="second_screen hidden">
+            <p>Crie suas perguntas</p>
+            <div class="input_container_question">
+                <span>Pergunta 1</span>
+                <div class="wrap_container">
+                    <div class="question_container">
+                        <input class="quizz_input quizz_question" type="text" placeholder="Texto da pergunta">
+                        <input class="quizz_input quizz_background" type="text" placeholder="Cor de fundo da pergunta">
+                    </div>
+                    <span>Resposta correta</span>
+                    <input class="quizz_input quizz_correct" type="text" placeholder="Resposta correta">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem">
+                    <span>Respostas incorretas</span>
+                    <input class="quizz_input quizz_incorrect first" type="text" placeholder="Resposta incorreta 1">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 1">
+                    <input class="quizz_input quizz_incorrect second" type="text" placeholder="Resposta incorreta 2">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 2">
+                    <input class="quizz_input quizz_incorrect third" type="text" placeholder="Resposta incorreta 3">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 3">     
+                </div>       
+            </div>
+            <div class="input_container_question">
+                <div class="hidden_container">
+                    <span>Pergunta 2</span>
+                    <img class="expand_questions" src="../assets/expand.png">
+                </div>
+                <div class="wrap_container hidden">
+                    <div class="question_container">
+                        <input class="quizz_input quizz_question" type="text" placeholder="Texto da pergunta">
+                        <input class="quizz_input quizz_background" type="text" placeholder="Cor de fundo da pergunta">
+                    </div>
+                    <span>Resposta correta</span>
+                    <input class="quizz_input quizz_correct" type="text" placeholder="Resposta correta">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem">
+                    <span>Respostas incorretas</span>
+                    <input class="quizz_input quizz_incorrect first" type="text" placeholder="Resposta incorreta 1">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 1">
+                    <input class="quizz_input quizz_incorrect second" type="text" placeholder="Resposta incorreta 2">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 2">
+                    <input class="quizz_input quizz_incorrect third" type="text" placeholder="Resposta incorreta 3">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 3">   
+                </div>
+            </div>
+            <div class="input_container_question">
+                <div class="hidden_container">
+                    <span>Pergunta 3</span>
+                    <img class="expand_questions" src="../assets/expand.png">
+                </div>
+                <div class="wrap_container hidden">
+                    <div class="question_container">
+                        <input class="quizz_input quizz_question" type="text" placeholder="Texto da pergunta">
+                        <input class="quizz_input quizz_background" type="text" placeholder="Cor de fundo da pergunta">
+                    </div>
+                    <span>Resposta correta</span>
+                    <input class="quizz_input quizz_correct" type="text" placeholder="Resposta correta">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem">
+                    <span>Respostas incorretas</span>
+                    <input class="quizz_input quizz_incorrect first" type="text" placeholder="Resposta incorreta 1">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 1">
+                    <input class="quizz_input quizz_incorrect second" type="text" placeholder="Resposta incorreta 2">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 2">
+                    <input class="quizz_input quizz_incorrect third" type="text" placeholder="Resposta incorreta 3">
+                    <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 3">            
+                </div>                
+            </div>
+            <button>Prosseguir pra criar níveis</button>
+        </div>
+        <div class="third_screen hidden">
+            <p>Agora, decida os níveis</p>
+            <div class="input_container_question">
+                <span>Nível 1</span>
+                <div class="wrap_container">
+                    <div class="question_container">
+                        <input class="quizz_input level_title" type="text" placeholder="Título do nível">
+                        <input class="quizz_input level_percentage" type="text" placeholder="% de acerto mínima">
+                        <input class="quizz_input level_url" type="text" placeholder="URL da imagem do nível">
+                        <input class="quizz_input level_description" type="text" placeholder="Descrição do nível">
+                    </div>
+                </div>       
+            </div>
+            <div class="input_container_question">
+                <div class="hidden_container">
+                    <span>Nível 2</span>
+                    <img class="expand_questions" src="../assets/expand.png">
+                </div>
+                <div class="wrap_container hidden">
+                    <div class="question_container">
+                        <input class="quizz_input level_title" type="text" placeholder="Título do nível">
+                        <input class="quizz_input level_percentage" type="text" placeholder="% de acerto mínima">
+                        <input class="quizz_input level_url" type="text" placeholder="URL da imagem do nível">
+                        <input class="quizz_input level_description" type="text" placeholder="Descrição do nível">
+                    </div>
+                </div>
+            </div>
+            <div class="input_container_question">
+                <div class="hidden_container">
+                    <span>Nível 3</span>
+                    <img class="expand_questions" src="../assets/expand.png">
+                </div>
+                <div class="wrap_container hidden">
+                    <div class="question_container">
+                        <input class="quizz_input level_title" type="text" placeholder="Título do nível">
+                        <input class="quizz_input level_percentage" type="text" placeholder="% de acerto mínima">
+                        <input class="quizz_input level_url" type="text" placeholder="URL da imagem do nível">
+                        <input class="quizz_input level_description" type="text" placeholder="Descrição do nível">
+                    </div>         
+                </div>                
+            </div>
+            <button>Finalizar Quizz</button>
+        </div>
+        <div class="finish_screen hidden">
+            <p>Seu quizz está pronto!</p>
+            <div class="finish_box">
+                <img src="../assets/Rectangle 36.png">
+                <span>O quão Potterhead é você?</span>                    
+            </div>
+            <button>Acessar Quizz</button>
+            <span>Voltar pra home</span>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../scripts/scripts.js"></script>
 </body>
