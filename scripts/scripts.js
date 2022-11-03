@@ -57,4 +57,4 @@ function StartQuizz(){
         CurrentPage.classList.add("hidden")
         const NextPage = document.querySelector(".second_screen")
         NextPage.classList.remove("hidden")
-}   
+}   /*teste*/
