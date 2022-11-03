@@ -19,12 +19,11 @@ function RenderAllQUizzes(){
         let ChosenQuizz = AllQuizzes[i]
         AllQuizzList.innerHTML += 
         `   
-
         <div class="quizz_box">
+            <div class="gradient"> </div>
             <img src="${ChosenQuizz.image}" class="quizz-pic">
             <span> ${ChosenQuizz.title}</span>                    
         </div>
-
         `
     }
 }
