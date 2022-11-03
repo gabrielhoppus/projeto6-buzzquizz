@@ -7,7 +7,6 @@ let CreatedQuizzHelp = {};  /*Variável para adcionar ao objeto para enviar o qu
 
 
 
-
 /*Código para buscar todos os Quizzes*/
 const PromisseGetQuizz = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
 PromisseGetQuizz.then(ValidAllQuizzesResponse)
