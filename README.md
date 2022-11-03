@@ -1,2 +1,0 @@
-# projeto6-buzzquizz
- 
