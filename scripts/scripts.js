@@ -1,5 +1,11 @@
 
-let AllQuizzes = [];
+let AllQuizzes = [];     /*Variável contendo todos os quizzes*/
+let CreatedQuizz = {};  /*Variável contendo objeto para enviar o quizz*/
+let CreatedQuizzHelp = {};  /*Variável para adcionar ao objeto para enviar o quizz*/
+
+
+
+
 
 
 /*Código para buscar todos os Quizzes*/
@@ -12,6 +18,8 @@ function ValidAllQuizzesResponse(response){
     RenderAllQUizzes()
 }
 
+
+/*Código para renderizar todos os quizzes*/
 function RenderAllQUizzes(){
     const AllQuizzList = document.querySelector(".premade_quizzes")
 
@@ -28,3 +36,26 @@ function RenderAllQUizzes(){
     }
 }
 
+
+
+
+
+/*Código para criar um  quizz parte 1*/
+function StartQuizz(){
+
+    const QuizzTitle = document.querySelector(".quizz_title").value
+    const QuizzImageUrl = document.querySelector(".quizz_url").value
+    const QuizzQuestionCount = document.querySelector(".quizz_questions").value
+    const QuizzLevels = document.querySelector(".quizz_level").value
+    
+        CreatedQuizz = { 
+        title: QuizzTitle,
+        image: QuizzImageUrl,
+    }
+    console.log(CreatedQuizz)
+        /*Código para esconder a primeira tela e mostrar a segunda*/
+        const CurrentPage = document.querySelector(".first_screen");
+        CurrentPage.classList.add("hidden")
+        const NextPage = document.querySelector(".second_screen")
+        NextPage.classList.remove("hidden")
+}   
