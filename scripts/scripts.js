@@ -238,35 +238,8 @@ function RenderLevelQuantity(){
 
 
 
-function AcessQuizz(id){
-    location.href='./html/answer_quiz.html'
-    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
-    console.log(promise);
-   promise.then(deuCerto);
-   promise.catch(deuruim);
-    
-}
-let quiz;
-
-function deuCerto(resposta){
-    console.log('deu bom');
-    console.log(resposta);
-    quiz = resposta.data;
-    RenderQuizz();
-}
-
-function deuruim(erro){
-console.log(erro);
-console.log('deu ruim');
-}
-
-function RenderQuizz(){
-    
-    const titleSelected = document.querySelector('.quiz_top');
-
-    titleSelected.innerHTML = 
-    `<img src="${quiz.image}">
-    <p>${quiz.title}</p>
-    `;
-
+/*Função que manda o id para a url da página de resposta de quiz */
+function getQuizz(id){
+    const message = encodeURIComponent(id);
+    location.href='./html/answer_quiz.html?name=' + message
 }

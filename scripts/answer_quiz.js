@@ -32,7 +32,7 @@ function randomizeList(){
 function RenderQuizz(){
     questions = quizInfo.questions
     for (let i = 0; i < questions.length; i++){
-        answer.push((questions[i].answers)); 
+        answer.push(questions[i].answers); 
     }
 
     titleSelected.innerHTML = `
@@ -47,17 +47,15 @@ function RenderQuizz(){
         </div>
         `
         a = answer[i]
-        a.sort(randomizeList)
         for(let j = 0; j < a.length; j++){
             quizQuestions.innerHTML += `   
             <div class="answers">                    
-                <div id="${questions[i].answers[j].isCorrectAnswer}" class="question_answer">
+                <div class="question_answer">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
                 </div>   
-            </div>                    
+            </div>         
         `;
         }
-        quizQuestions.innerHTML += `<div class="wrapper"></div>`
     }
 }

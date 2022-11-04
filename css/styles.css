@@ -404,17 +404,17 @@ input[type="text"] {
 }
 
 .question_container{
-    background-color: #FFFFFF;
+    background-color: black;
     margin-left: auto;
     margin-right: auto;
     width: 759px;
-    height: 100%;
+    max-height: 676px;
+    background-color: #FFFFFF;
     text-align: center;
     margin-top: 42px;
     margin-bottom: 42px;
     display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 25px;
+    flex-direction: column;
 }
 
 .question_header{
@@ -436,8 +436,13 @@ input[type="text"] {
 
 .answers{
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24.29px;
     text-align: left;
-
+    margin-left: auto;
+    margin-right: auto;
     background-color: blue;
 }
 
@@ -453,14 +458,6 @@ input[type="text"] {
     line-height: 23px;
     margin-top: 7.75px;
     cursor: pointer;
-    color: white;
-    padding-bottom: 35.66px;
-}
-
-.wrapper{
-    height: 42px;
-    width: 759px;
-    background-color: #FAFAFA;
 }
 
 .result_container{
