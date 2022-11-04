@@ -23,6 +23,12 @@ function deuruim(){
     alert("error")
 }
 
+function randomizeList(){
+    //função para randomizar os elementos do jogo
+    const randomCount = 0.5;
+    return Math.random() - randomCount;
+}
+
 function RenderQuizz(){
     questions = quizInfo.questions
     for (let i = 0; i < questions.length; i++){
@@ -41,10 +47,11 @@ function RenderQuizz(){
         </div>
         `
         a = answer[i]
+        a.sort(randomizeList)
         for(let j = 0; j < a.length; j++){
             quizQuestions.innerHTML += `   
             <div class="answers">                    
-                <div class="question_answer">
+                <div id="${questions[i].answers[j].isCorrectAnswer}" class="question_answer">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
                 </div>   
