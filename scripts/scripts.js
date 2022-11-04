@@ -1,5 +1,5 @@
 
-        /*funçao para testar se url é válido */
+    /*funçao para testar se url é válido */
 	const isValidUrl = urlString=> {
         var urlPattern = new RegExp('^(https?:\\/\\/)?'+ 
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ 
@@ -18,8 +18,8 @@ let CreatedQuizzHelp = {};  /*Variável para adcionar ao objeto para enviar o qu
 
 
 
-let QuizzQuestionCount = ""; /*Variável para contar numero de questoes ao criar o quizz*/
-let QuizzLevels = ""; /*Variável para contar numero de niveis ao criar o quizz*/
+let QuizzQuestionCount = 0; /*Variável para contar numero de questoes ao criar o quizz*/
+let QuizzLevels = 0; /*Variável para contar numero de niveis ao criar o quizz*/
 
 
 
@@ -63,15 +63,14 @@ function StartQuizz(){
     const QuizzImageUrl = document.querySelector(".quizz_url").value
     QuizzQuestionCount = document.querySelector(".quizz_questions").value
     QuizzLevels = document.querySelector(".quizz_level").value
-    
         CreatedQuizz = { 
         title: QuizzTitle,
         image: QuizzImageUrl,
     }
-
+        
         /*Condiçao em que todos os valores sao válidos*/
-    if(QuizzTitle.length > 20 || QuizzTitle.length < 65 && isValidUrl(QuizzImageUrl) && QuizzQuestionCount >= 3 &&  QuizzLevels <2) {
-
+        if(QuizzTitle.length > 20  && isValidUrl(QuizzImageUrl) && QuizzQuestionCount >= 3 &&  QuizzLevels >= 2) {
+            
         /*Código para esconder a primeira tela e mostrar a segunda tela*/
         const CurrentPage = document.querySelector(".first_screen");
         CurrentPage.classList.add("hidden")
@@ -102,24 +101,96 @@ function RenderNumberOfQuestions(){
         </div>
         <div class="wrap_container " >
             <div class="create_question_container">
-            <input class="quizz_input quizz_question" type="text" placeholder="Texto da pergunta">
-            <input class="quizz_input quizz_background" type="text" placeholder="Cor de fundo da pergunta">
+            <input class="quizz_input quizz_question" id="QuestionText" type="text" placeholder="Texto da pergunta">
+            <input class="quizz_input quizz_background" id="QuestionBackgroundColor" type="text" placeholder="Cor de fundo da pergunta">
             </div>
             <span>Resposta correta</span>
-            <input class="quizz_input quizz_correct " type="text" placeholder="Resposta correta">
-            <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem">
+            <input class="quizz_input quizz_correct " id="RightAnswerText" type="text" placeholder="Resposta correta">
+            <input class="quizz_input quizz_img" type="text" id="RightUrl" placeholder="URL da imagem">
             <span>Respostas incorretas</span>
-            <input class="quizz_input quizz_incorrect first" type="text" placeholder="Resposta incorreta 1">
-            <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 1">
-            <input class="quizz_input quizz_incorrect second" type="text" placeholder="Resposta incorreta 2">
-            <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 2">
-            <input class="quizz_input quizz_incorrect third" type="text" placeholder="Resposta incorreta 3">
-            <input class="quizz_input quizz_img" type="text" placeholder="URL da imagem 3">   
+            <input class="quizz_input quizz_incorrect first" id="WrongAnswer" type="text" placeholder="Resposta incorreta 1">
+            <input class="quizz_input quizz_img" type="text" id="WrongUrl"  placeholder="URL da imagem 1">
+            <input class="quizz_input quizz_incorrect second" id="WrongAnswer"  type="text" placeholder="Resposta incorreta 2">
+            <input class="quizz_input quizz_img" type="text" id="WrongUrl" placeholder="URL da imagem 2">
+            <input class="quizz_input quizz_incorrect third" id="WrongAnswer"  type="text" placeholder="Resposta incorreta 3">
+            <input class="quizz_input quizz_img" type="text" id="WrongUrl" placeholder="URL da imagem 3">   
         </div>
     </div>
         `  
     }
 }
+
+function CheckIfOkSecondPageOk(){
+    let QuestionAproved = 0
+    let BackgroundAproved = 0
+    let RightAnswerAproved = 0
+    let RightUrlAproved = 0
+
+
+    /* parte para chegar se a pergunta é válida*/
+    const QuestionText = document.querySelectorAll("#QuestionText")
+    console.log(QuestionText)
+        
+        for (let i = 0 ; i < QuestionText.length ; i++){
+            if (QuestionText[i].value.length < 20){
+                alert("erro QuestionAproved")
+            }
+            else{
+                QuestionAproved = 1
+            }
+        }
+        /* parte para chegar se o  background é válido*/
+        const QuestionBackgroundColor = document.querySelectorAll("#QuestionBackgroundColor")
+        console.log(QuestionBackgroundColor)
+        for (let i = 0 ; i < QuestionBackgroundColor.length ; i++){
+            if (QuestionBackgroundColor[i].value.includes("#") && QuestionBackgroundColor[i].value.length == 7 ){
+                BackgroundAproved = 1
+            }
+            else{
+                BackgroundAproved = 0
+                alert("erro BackgroundAproved")
+            }
+        }
+        /* parte para chegar se a resposta correta é válida*/
+        const RightAnswerText = document.querySelectorAll("#RightAnswerText")
+        console.log(RightAnswerText)
+
+        for (let i = 0 ; i < RightAnswerText.length ; i++){
+            if (RightAnswerText[i].value === ""){
+                alert("erro RightAnswerAproved")
+            }
+            else{
+                RightAnswerAproved = 1
+            }
+        }
+
+        /* parte para chegar se o  url da resposta correta é válido*/
+        const RightUrl = document.querySelectorAll("#RightUrl")
+        console.log(RightUrl)
+        for (let i = 0 ; i < RightUrl.length ; i++){
+            if ( isValidUrl(QuizzImageUrl[i].value) ){
+                RightUrlAproved = 1
+            }
+            else{
+                RightUrlAproved = 0
+                alert("erro RightUrlAproved")
+            }
+        }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         /*Código para renderizar a página de criaçao de niveis da terceira tela*/
