@@ -1,4 +1,17 @@
 
+        /*funçao para testar se url é válido */
+	const isValidUrl = urlString=> {
+        var urlPattern = new RegExp('^(https?:\\/\\/)?'+ 
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ 
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ 
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ 
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ 
+        '(\\#[-a-z\\d_]*)?$','i'); 
+    return !!urlPattern.test(urlString);
+
+    }
+
+
 let AllQuizzes = [];     /*Variável contendo todos os quizzes*/
 let CreatedQuizz = {};  /*Variável contendo objeto para enviar o quizz*/
 let CreatedQuizzHelp = {};  /*Variável para adcionar ao objeto para enviar o quizz*/
@@ -17,7 +30,7 @@ PromisseGetQuizz.then(ValidAllQuizzesResponse)
 
 function ValidAllQuizzesResponse(response){
     AllQuizzes = response.data;
-   console.log(AllQuizzes)
+    console.log(AllQuizzes)
     RenderAllQUizzes()
 }
 
@@ -55,15 +68,24 @@ function StartQuizz(){
         title: QuizzTitle,
         image: QuizzImageUrl,
     }
-        /*Código para esconder a primeira tela e mostrar a segunda*/
+
+        /*Condiçao em que todos os valores sao válidos*/
+    if(QuizzTitle.length > 20 || QuizzTitle.length < 65 && isValidUrl(QuizzImageUrl) && QuizzQuestionCount >= 3 &&  QuizzLevels <2) {
+
+        /*Código para esconder a primeira tela e mostrar a segunda tela*/
         const CurrentPage = document.querySelector(".first_screen");
         CurrentPage.classList.add("hidden")
         const NextPage = document.querySelector(".second_screen")
         NextPage.classList.remove("hidden")
         RenderNumberOfQuestions()
+}
+    else{
+        alert("algum dos parametros está incorreto, preencha corretamente.")
+    }
+
 }   
 
-
+        /*Código para renderizar a página de criaçao de perguntas da terceira tela*/
 function RenderNumberOfQuestions(){
     let SecondPageList = document.querySelector(".second_screen_questions")
 
@@ -100,7 +122,7 @@ function RenderNumberOfQuestions(){
 }
 
 
-
+        /*Código para renderizar a página de criaçao de niveis da terceira tela*/
 function RenderLevelQuantity(){
 
     const NextPage = document.querySelector(".second_screen")
