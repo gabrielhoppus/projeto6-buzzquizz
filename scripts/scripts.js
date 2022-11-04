@@ -37,18 +37,19 @@ function ValidAllQuizzesResponse(response){
 
 /*Código para renderizar todos os quizzes*/
 function RenderAllQUizzes(){
-    const AllQuizzList = document.querySelector(".premade_quizzes")
-
-    for (let i = 0; i < AllQuizzes.length; i++ ){
-        let ChosenQuizz = AllQuizzes[i]
-        AllQuizzList.innerHTML += 
-        `   
-        <div class="quizz_box" onclick="AcessQuizz(${ChosenQuizz.id})">
-            <div class="gradient"> </div>
-            <img src="${ChosenQuizz.image}" class="quizz-pic">
-            <span> ${ChosenQuizz.title}</span>                    
-        </div>
-        `
+    if(window.location.pathname.startsWith('/index')){
+        const AllQuizzList = document.querySelector('.premade_quizzes')
+        AllQuizzList.innerHTML = ''
+        for (let i = 0; i < AllQuizzes.length; i++ ){
+            AllQuizzList.innerHTML += 
+            `   
+            <div id="${AllQuizzes[i].id}" class="quizz_box" onclick="getQuizz(this.id)">
+                <div class="gradient"> </div>
+                <img src="${AllQuizzes[i].image}" class="quizz-pic">
+                <span> ${AllQuizzes[i].title}</span>                    
+            </div>
+            `
+        }
     }
 }
 
