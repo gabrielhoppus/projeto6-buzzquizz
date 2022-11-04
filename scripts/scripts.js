@@ -59,26 +59,28 @@ function StartQuizz(){
         CurrentPage.classList.add("hidden")
         const NextPage = document.querySelector(".second_screen")
         NextPage.classList.remove("hidden")
-        CreateNumberOfQuestions()
+        RenderNumberOfQuestions()
 }   
 
 
-function CreateNumberOfQuestions(){
-    const SecondPageList = document.querySelector(".second_screen")
+function RenderNumberOfQuestions(){
+    let SecondPageList = document.querySelector(".second_screen_questions")
 
     for(let i = 0 ; i < QuizzQuestionCount; i++ ){
 
         SecondPageList.innerHTML +=
+
         `  
-        <div class="input_container_question" onclick="SecondPageUnwrapContainer(this)">
+        <div class="input_container_question" onclick="SecondPageUnwrapContainer(this)" >
+        
         <div class="hidden_container">
             <span>Pergunta ${i+1}</span>
-            <img class="expand_questions" src="../assets/expand.png" >
+            <img class="expand_questions" src="../assets/expand.png"  >
         </div>
-        <div class="wrap_container hidden " >
-            <div class="question_container">
-                <input class="quizz_input quizz_question " type="text" placeholder="Texto da pergunta">
-                <input class="quizz_input quizz_background " type="text" placeholder="Cor de fundo da pergunta">
+        <div class="wrap_container " >
+            <div class="create_question_container">
+            <input class="quizz_input quizz_question" type="text" placeholder="Texto da pergunta">
+            <input class="quizz_input quizz_background" type="text" placeholder="Cor de fundo da pergunta">
             </div>
             <span>Resposta correta</span>
             <input class="quizz_input quizz_correct " type="text" placeholder="Resposta correta">
@@ -94,16 +96,47 @@ function CreateNumberOfQuestions(){
     </div>
         `  
     }
-
-    /*teste1111*/
 }
 
 
 
 
+function RenderLevelQuantity(){
 
-function SecondPageUnwrapContainer(Unwraper){
+    const NextPage = document.querySelector(".second_screen")
+    NextPage.classList.add("hidden")
+    const NextPage2 = document.querySelector(".third_screen")
+    NextPage2.classList.remove("hidden")
+
+    let ThirdPageList = document.querySelector(".third_screen_questions")
+
+    for(let i = 0 ; i < QuizzLevels; i++ ){
+
+        ThirdPageList.innerHTML +=
+
+        `  
+        <div class="input_container_question">
+        <span>Nível ${i+1}</span>
+        <div class="wrap_container">
+            <div class="create_question_container">
+                <input class="quizz_input level_title" type="text" placeholder="Título do nível">
+                <input class="quizz_input level_percentage" type="text" placeholder="% de acerto mínima">
+                <input class="quizz_input level_url" type="text" placeholder="URL da imagem do nível">
+                <input class="quizz_input level_description" type="text" placeholder="Descrição do nível">
+            </div>
+        </div>       
+    </div>
+        `  
+    }
+
+}
+
+
+
+
+/*function SecondPageUnwrapContainer(Unwraper){
     
     Unwraper.childNodes[3].classList.toggle('hidden')
     console.log(UnwraperHelper)
-}   
+    
+}   */
