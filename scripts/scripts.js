@@ -24,32 +24,31 @@ let QuizzLevels = 0; /*Variável para contar numero de niveis ao criar o quizz*/
 
 
 
-
 /*Código para buscar todos os Quizzes*/
 const PromisseGetQuizz = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
 PromisseGetQuizz.then(ValidAllQuizzesResponse)
 
 function ValidAllQuizzesResponse(response){
     AllQuizzes = response.data;
+    console.log(AllQuizzes)
     RenderAllQUizzes()
 }
 
 
 /*Código para renderizar todos os quizzes*/
 function RenderAllQUizzes(){
-    if(window.location.pathname.startsWith('/index')){
-        const AllQuizzList = document.querySelector('.premade_quizzes')
-        AllQuizzList.innerHTML = ''
-        for (let i = 0; i < AllQuizzes.length; i++ ){
-            AllQuizzList.innerHTML += 
-            `   
-            <div id="${AllQuizzes[i].id}" class="quizz_box" onclick="getQuizz(this.id)">
-                <div class="gradient"> </div>
-                <img src="${AllQuizzes[i].image}" class="quizz-pic">
-                <span> ${AllQuizzes[i].title}</span>                    
-            </div>
-            `
-        }
+    const AllQuizzList = document.querySelector(".premade_quizzes")
+
+    for (let i = 0; i < AllQuizzes.length; i++ ){
+        let ChosenQuizz = AllQuizzes[i]
+        AllQuizzList.innerHTML += 
+        `   
+        <div class="quizz_box" onclick="AcessQuizz(${ChosenQuizz.id})">
+            <div class="gradient"> </div>
+            <img src="${ChosenQuizz.image}" class="quizz-pic">
+            <span> ${ChosenQuizz.title}</span>                    
+        </div>
+        `
     }
 }
 
@@ -71,7 +70,9 @@ function StartQuizz(){
         
         /*Condiçao em que todos os valores sao válidos*/
         if(QuizzTitle.length > 20  && isValidUrl(QuizzImageUrl) && QuizzQuestionCount >= 3 &&  QuizzLevels >= 2) {
-            
+            if (QuizzTitle.length < 60){
+                return
+            }
         /*Código para esconder a primeira tela e mostrar a segunda tela*/
         const CurrentPage = document.querySelector(".first_screen");
         CurrentPage.classList.add("hidden")
@@ -181,7 +182,7 @@ function CheckIfOkSecondPageOk(){
 }
 
 
-
+/*teste*/
 
 
 
@@ -226,15 +227,46 @@ function RenderLevelQuantity(){
 }
 
 
+
+
 /*function SecondPageUnwrapContainer(Unwraper){
     
     Unwraper.childNodes[3].classList.toggle('hidden')
-
+    console.log(UnwraperHelper)
     
 }   */
 
-/*Função que manda o id para a url da página de resposta de quiz */
-function getQuizz(id){
-    const message = encodeURIComponent(id);
-    location.href='./html/answer_quiz.html?name=' + message
+
+
+function AcessQuizz(id){
+    location.href='./html/answer_quiz.html'
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+    console.log(promise);
+   promise.then(deuCerto);
+   promise.catch(deuruim);
+    
+}
+let quiz;
+
+function deuCerto(resposta){
+    console.log('deu bom');
+    console.log(resposta);
+    quiz = resposta.data;
+    RenderQuizz();
+}
+
+function deuruim(erro){
+console.log(erro);
+console.log('deu ruim');
+}
+
+function RenderQuizz(){
+    
+    const titleSelected = document.querySelector('.quiz_top');
+
+    titleSelected.innerHTML = 
+    `<img src="${quiz.image}">
+    <p>${quiz.title}</p>
+    `;
+
 }
