@@ -26,7 +26,7 @@ function deuruim(){
 function RenderQuizz(){
     questions = quizInfo.questions
     for (let i = 0; i < questions.length; i++){
-        answer.push(questions[i].answers); 
+        answer.push((questions[i].answers)); 
     }
 
     titleSelected.innerHTML = `
@@ -38,17 +38,19 @@ function RenderQuizz(){
         quizQuestions.innerHTML += 
         `<div class="question_header" style="background-color:${questions[i].color}">
             <span>${questions[i].title}</span>        
-        </div>`
-        
-        for(let j = 0; j < answer.length; j++){
-            quizQuestions.innerHTML += `  
-            <div class="answers">          
+        </div>
+        `
+        a = answer[i]
+        for(let j = 0; j < a.length; j++){
+            quizQuestions.innerHTML += `   
+            <div class="answers">                    
                 <div class="question_answer">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
                 </div>   
-            </div>         
+            </div>                    
         `;
         }
+        quizQuestions.innerHTML += `<div class="wrapper"></div>`
     }
 }
