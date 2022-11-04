@@ -7,13 +7,14 @@ let CreatedQuizzHelp = {};  /*Variável para adcionar ao objeto para enviar o qu
 
 
 
+
 /*Código para buscar todos os Quizzes*/
 const PromisseGetQuizz = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
 PromisseGetQuizz.then(ValidAllQuizzesResponse)
 
 function ValidAllQuizzesResponse(response){
     AllQuizzes = response.data;
-    console.log(AllQuizzes)
+   console.log(AllQuizzes)
     RenderAllQUizzes()
 }
 
@@ -26,7 +27,7 @@ function RenderAllQUizzes(){
         let ChosenQuizz = AllQuizzes[i]
         AllQuizzList.innerHTML += 
         `   
-        <div class="quizz_box">
+        <div class="quizz_box" onclick="AcessQuizz(${ChosenQuizz.id})">
             <div class="gradient"> </div>
             <img src="${ChosenQuizz.image}" class="quizz-pic">
             <span> ${ChosenQuizz.title}</span>                    
@@ -58,3 +59,38 @@ function StartQuizz(){
         const NextPage = document.querySelector(".second_screen")
         NextPage.classList.remove("hidden")
 }   /*teste*/
+
+
+
+
+function AcessQuizz(id){
+    location.href='./html/answer_quiz.html'
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`);
+    console.log(promise);
+   promise.then(deuCerto);
+   promise.catch(deuruim);
+    
+}
+let quiz;
+
+function deuCerto(resposta){
+    console.log('deu bom');
+    console.log(resposta);
+    quiz = resposta.data;
+    RenderQuizz();
+}
+
+function deuruim(erro){
+console.log(erro);
+console.log('deu ruim');
+}
+
+function RenderQuizz(){
+    
+    const titleSelected = document.querySelector('.quiz_top');
+
+    titleSelected.innerHTML = 
+    `<img src="${quiz.image}">
+    <p>${quiz.title}</p>
+    `;
+}
