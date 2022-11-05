@@ -37,7 +37,7 @@ function ValidAllQuizzesResponse(response){
 
 /*Código para renderizar todos os quizzes*/
 function RenderAllQUizzes(){
-    if(window.location.pathname.startsWith('/index')){
+    //if(window.location.pathname.startsWith('/index')){
         const AllQuizzList = document.querySelector('.premade_quizzes')
         AllQuizzList.innerHTML = ''
         for (let i = 0; i < AllQuizzes.length; i++ ){
@@ -51,7 +51,7 @@ function RenderAllQUizzes(){
             `
         }
     }
-}
+
 
 
 
