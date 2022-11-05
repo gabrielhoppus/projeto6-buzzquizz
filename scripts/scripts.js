@@ -72,7 +72,7 @@ function StartQuizz(){
         /*Condiçao em que todos os valores sao válidos*/
         if(QuizzTitle.length > 20  && isValidUrl(QuizzImageUrl) && QuizzQuestionCount >= 3 &&  QuizzLevels >= 2) {
             if (QuizzTitle.length < 60){
-                return
+                alert("algum dos parametros está incorreto, preencha corretamente.")
             }
         /*Código para esconder a primeira tela e mostrar a segunda tela*/
         const CurrentPage = document.querySelector(".first_screen");
@@ -111,11 +111,11 @@ function RenderNumberOfQuestions(){
             <input class="quizz_input quizz_correct " id="RightAnswerText" type="text" placeholder="Resposta correta">
             <input class="quizz_input quizz_img" type="text" id="RightUrl" placeholder="URL da imagem">
             <span>Respostas incorretas</span>
-            <input class="quizz_input quizz_incorrect first" id="WrongAnswer" type="text" placeholder="Resposta incorreta 1">
+            <input class="quizz_input quizz_incorrect first" id="WrongAnswerText" type="text" placeholder="Resposta incorreta 1">
             <input class="quizz_input quizz_img" type="text" id="WrongUrl"  placeholder="URL da imagem 1">
-            <input class="quizz_input quizz_incorrect second" id="WrongAnswer"  type="text" placeholder="Resposta incorreta 2">
+            <input class="quizz_input quizz_incorrect second" id="WrongAnswerText"  type="text" placeholder="Resposta incorreta 2">
             <input class="quizz_input quizz_img" type="text" id="WrongUrl" placeholder="URL da imagem 2">
-            <input class="quizz_input quizz_incorrect third" id="WrongAnswer"  type="text" placeholder="Resposta incorreta 3">
+            <input class="quizz_input quizz_incorrect third" id="WrongAnswerText"  type="text" placeholder="Resposta incorreta 3">
             <input class="quizz_input quizz_img" type="text" id="WrongUrl" placeholder="URL da imagem 3">   
         </div>
     </div>
@@ -128,7 +128,8 @@ function CheckIfOkSecondPageOk(){
     let BackgroundAproved = 0
     let RightAnswerAproved = 0
     let RightUrlAproved = 0
-
+    let WrongAnswerAproved = 0
+    let WrongUrlAproved = 0
 
     /* parte para chegar se a pergunta é válida*/
     const QuestionText = document.querySelectorAll("#QuestionText")
@@ -171,7 +172,7 @@ function CheckIfOkSecondPageOk(){
         const RightUrl = document.querySelectorAll("#RightUrl")
         console.log(RightUrl)
         for (let i = 0 ; i < RightUrl.length ; i++){
-            if ( isValidUrl(QuizzImageUrl[i].value) ){
+            if ( isValidUrl(RightUrl[i].value) ){
                 RightUrlAproved = 1
             }
             else{
@@ -180,10 +181,36 @@ function CheckIfOkSecondPageOk(){
             }
         }
 
+        const WrongAnswerText = document.querySelectorAll("#WrongAnswerText")
+        console.log(WrongAnswerText)
+        for (let i = 0 ; i < WrongAnswerText.length ; i++){
+            if (WrongAnswerText[i].value === ""){
+                alert("erro WrongAnswerAproved")
+                WrongAnswerAproved = 0
+            }
+            else{
+                WrongAnswerAproved = 1
+            }
+        }
+
+        const WrongUrl = document.querySelectorAll("#WrongUrl")
+        console.log(WrongUrl)
+        for (let i = 0 ; i < WrongUrl.length ; i++){
+            if (WrongUrl[i].value === ""){
+                alert("erro WrongUrlAproved")
+                WrongUrlAproved = 0
+            }
+            else{
+                WrongUrlAproved = 1
+            }
+        }
+        if ( QuestionAproved === 1 && BackgroundAproved === 1 &&  RightAnswerAproved === 1 && RightUrlAproved === 1 && WrongAnswerAproved === 1 && WrongUrlAproved === 1 ){
+            RenderLevelQuantity()
+        }
 }
 
-
-/*teste*/
+        
+        
 
 
 
