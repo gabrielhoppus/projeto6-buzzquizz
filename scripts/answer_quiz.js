@@ -2,11 +2,14 @@ let quizID = ""
 let promise = null
 let titleSelected = document.querySelector('.quiz_top');
 let quizQuestions = document.querySelector('.question');
+let resultQuizz = document.querySelector('.result_container');
 let container;
-
+let attempts = 0;
+let success = 0;
 let questions = []
 let answer = []
 let a = []
+let click = 0;
 
 function Comparator(){
     return Math.random() - 0.5;
@@ -31,14 +34,9 @@ function deuruim(){
     alert("error")
 }
 
-function randomizeList(){
-    //função para randomizar os elementos do jogo
-    const randomCount = 0.5;
-    return Math.random() - randomCount;
-}
-
 function RenderQuizz(){
     questions = quizInfo.questions;
+   
     for (let i = 0; i < questions.length; i++){
         answer.push(questions[i].answers); 
     }
@@ -55,7 +53,7 @@ function RenderQuizz(){
     questions[i].answers.sort(Comparator)
         quizQuestions.innerHTML += 
         `<div class="divider">
-        <div class="question_header" style="background-color:${questions[i].color}">
+        <div class="question_header now" style="background-color:${questions[i].color}">
             <span>${questions[i].title}</span>        
         </div>
         <div class="answers">
@@ -70,7 +68,7 @@ function RenderQuizz(){
         if(list[j].isCorrectAnswer === true){
            container[i].innerHTML += `   
                     
-                <div class="question_answer correct hidden now" onclick="addChoice(this)">
+                <div class="question_answer correct hidden" onclick="addChoice(this)">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
                 </div>   
@@ -79,7 +77,7 @@ function RenderQuizz(){
         } else{
             container[i].innerHTML += `   
                              
-                <div class="question_answer incorrect hidden now" onclick="addChoice(this)">
+                <div class="question_answer incorrect hidden" onclick="addChoice(this)">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
                 </div>   
@@ -92,7 +90,10 @@ function RenderQuizz(){
 
 function addChoice(selected){
    selected.classList.add('selected');
-  
+   if(selected.classList.contains('correct')){
+    success++;
+   }
+   attempts++;
    let options = selected.parentNode.parentNode.querySelectorAll('.question_answer');
    console.log(options);
    let scroll = selected.parentNode.parentNode.parentNode.parentNode.querySelectorAll('.question_answer');
@@ -106,10 +107,53 @@ function addChoice(selected){
         scroll[i].classList.remove('now');
     }
 }
-setTimeout(rollQuestion,2000);
+setTimeout(scrollQuestion,2000);
+setTimeout(upLevel,2000);
 }
 
-function rollQuestion(){
+function scrollQuestion(){
     const nowElement = document.querySelector('.now');
     nowElement.scrollIntoView();
 }
+
+function upLevel(){
+
+if(attempts === quizInfo.questions.length) {
+        const result = Math.round((success/attempts)*100);
+
+        for(let i = quizInfo.levels.length - 1; i > -1; i--) {
+            if (result >= quizInfo.levels[i].minValue) {
+
+        resultQuizz.innerHTML += `
+ <div class="result_header">
+            <p>${result}% de acerto: ${quizInfo.levels[i].title}</p>
+        </div>
+        <div class="result_body">
+            <img src="${quizInfo.levels[i].image}">
+            <p>${quizInfo.levels[i].text}</p>
+        </div>
+
+        <div class="final_container">
+    <button class="restart_btn" onclick="getQuizz(id)">Reiniciar Quizz</button>
+    <span class="home_btn" onclick="location.href='../index.html'">Voltar pra home</span>
+</div>
+`;
+
+const final = document.querySelector('.result_container');
+
+function scrollResult() {
+    final.scrollIntoView();
+}
+
+setTimeout(scrollResult, 2000);
+
+attempts = 0;
+sucess = 0;
+break;
+            }
+        }
+    }
+}
+
+
+
