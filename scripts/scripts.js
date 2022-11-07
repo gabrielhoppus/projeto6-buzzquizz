@@ -39,8 +39,8 @@ function RenderAllQUizzes(){
     userQuiz.innerHTML = ""
 
     for (let i = 0; i < lista.length; i++ ){
-        const promisseGetUserQuizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${lista[i]}`)
-        promisseGetUserQuizz.then(userData)
+        //const promisseGetUserQuizz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${lista[i]}`)
+        //promisseGetUserQuizz.then(userData)
         userQuiz.innerHTML += `
             <div class="quizz_box">
                 <img src="./assets/Rectangle 36.png">
