@@ -367,6 +367,12 @@ input[type="text"] {
     cursor: pointer;
 }
 
+.level1{
+    pointer-events: none;
+    background-color: gray;
+}
+
+
 /*answer_quiz html*/
 .shader{
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
