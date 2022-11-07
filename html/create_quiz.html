@@ -31,28 +31,17 @@
             </div>
             <button onclick="StartQuizz()">Prosseguir para criar perguntas</button>
         </div>
-
         <div class="second_screen hidden ">
 
             <p>Crie suas perguntas</p>
             <div class="second_screen_questions"></div>
             <button onclick="CheckIfOkSecondPageOk()" >Prosseguir pra criar níveis</button>
         </div>
-
-
-
-
-
         <div class="third_screen hidden">
             <p>Agora, decida os níveis</p>
-            <div class="third_screen_questions">
-            </div>            
-            </div>
-            <button>Finalizar Quizz</button>
+            <div class="third_screen_questions"></div>
+            <button onclick="validateLevels()">Finalizar Quizz</button>            
         </div>
-
-
-        
         <div class="finish_screen hidden">
             <p>Seu quizz está pronto!</p>
             <div class="finish_box">
@@ -64,6 +53,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../scripts/scripts.js"></script>
+    <script src="../scripts/create_quiz.js"></script>
 </body>
 </html>
