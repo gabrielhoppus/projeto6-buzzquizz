@@ -117,7 +117,6 @@ function scrollQuestion(){
 }
 
 function upLevel(){
-
 if(attempts === quizInfo.questions.length) {
         const result = Math.round((success/attempts)*100);
 
@@ -134,7 +133,7 @@ if(attempts === quizInfo.questions.length) {
         </div>
 
         <div class="final_container">
-    <button class="restart_btn" onclick="getQuizz(id)">Reiniciar Quizz</button>
+    <button class="restart_btn" onclick="window.location.reload();">Reiniciar Quizz</button>
     <span class="home_btn" onclick="location.href='../index.html'">Voltar pra home</span>
 </div>
 `;
@@ -147,8 +146,7 @@ function scrollResult() {
 
 setTimeout(scrollResult, 2000);
 
-attempts = 0;
-sucess = 0;
+
 break;
             }
         }
