@@ -3,6 +3,7 @@ let CreatedQuizzHelp = {};  /*Variável para adcionar ao objeto para enviar o qu
 let QuizzQuestionCount = 0; /*Variável para contar numero de questoes ao criar o quizz*/
 let QuizzLevels = 0; /*Variável para contar numero de niveis ao criar o quizz*/
 
+
 /*funçao para testar se url é válido */
 const isValidUrl = urlString=> {
     var urlPattern = new RegExp('^(https?:\\/\\/)?'+ 
@@ -14,10 +15,13 @@ const isValidUrl = urlString=> {
 return !!urlPattern.test(urlString);
 }
 
+let QuizzTitle = ''
+let QuizzImageUrl = ''
+
 /*Código para criar um  quizz parte 1*/
 function StartQuizz(){
-    const QuizzTitle = document.querySelector(".quizz_title").value
-    const QuizzImageUrl = document.querySelector(".quizz_url").value
+    QuizzTitle = document.querySelector(".quizz_title").value
+    QuizzImageUrl = document.querySelector(".quizz_url").value
     QuizzQuestionCount = document.querySelector(".quizz_questions").value
     QuizzLevels = document.querySelector(".quizz_level").value
         CreatedQuizz = { 
@@ -38,10 +42,12 @@ function StartQuizz(){
         const NextPage = document.querySelector(".second_screen")
         NextPage.classList.remove("hidden")
         RenderNumberOfQuestions()
+        return QuizzTitle, QuizzImageUrl
 }
     else{
         alert("Algum dos parametros está incorreto, preencha corretamente.")
     }
+    
 }   
 
 /*Código para renderizar a página de criaçao de perguntas da terceira tela*/
@@ -88,7 +94,8 @@ function CheckIfOkSecondPageOk(){
     const QuestionText = document.querySelectorAll(".quizz_question")        
     for (let i = 0 ; i < QuestionText.length ; i++){
         if (QuestionText[i].value.length >= 20){
-            QuestionAproved = true          
+            QuestionAproved = true
+            
         }
         else{
             QuestionAproved = false
@@ -200,6 +207,86 @@ function CheckIfOkSecondPageOk(){
         else{
             alert("Error - Por favor insira informações válidas")
         }
+
+
+
+        questions: [
+            {
+                title: "Título da pergunta 1",
+                color: "#123456",
+                answers:         [
+                    {
+                        text: "Texto da resposta 1",
+                        image: "https://http.cat/411.jpg",
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: "Texto da resposta 2",
+                        image: "https://http.cat/412.jpg",
+                        isCorrectAnswer: false
+                    }
+                ]
+            },
+            {
+                title: "Título da pergunta 2",
+                color: "#123456",
+                answers: [
+                    {
+                        text: "Texto da resposta 1",
+                        image: "https://http.cat/411.jpg",
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: "Texto da resposta 2",
+                        image: "https://http.cat/412.jpg",
+                        isCorrectAnswer: false
+                    }
+                ]
+            },
+            {
+                title: "Título da pergunta 3",
+                color: "#123456",
+                answers: [
+                    {
+                        text: "Texto da resposta 1",
+                        image: "https://http.cat/411.jpg",
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: "Texto da resposta 2",
+                        image: "https://http.cat/412.jpg",
+                        isCorrectAnswer: false
+                    }
+                ]
+            }
+        ],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 /*Código para renderizar a página de criaçao de niveis da terceira tela*/
 function RenderLevelQuantity(){
@@ -293,6 +380,39 @@ function confirmQuizz(){
     currentPage.classList.add("hidden")
     const finishPage = document.querySelector(".finish_screen")
     finishPage.classList.remove("hidden")
+    let finishedInfo = document.querySelector(".finish_box")
+    finishedInfo.innerHTML = `
+    <img src="${QuizzImageUrl}">
+    <span>${QuizzTitle}</span>`
+
+    const quizData = {
+    title: QuizzTitle,
+	image: QuizzImageUrl,
+
+	levels: [
+		{
+			title: "Título do nível 1",
+			image: "https://http.cat/411.jpg",
+			text: "Descrição do nível 1",
+			minValue: 0
+		},
+		{
+			title: "Título do nível 2",
+			image: "https://http.cat/412.jpg",
+			text: "Descrição do nível 2",
+			minValue: 50
+		}
+	]
+}
+
+
+
+
+
+
+    let promisseSendQuizz = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizData)
+    PromisseGetQuizz.then(ValidAllQuizzesResponse)
+
 }
 
 
