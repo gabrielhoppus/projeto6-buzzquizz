@@ -2,6 +2,6 @@
 
 Colaboradores: 
 
-Luiz Gabriel Macedo da Silva
-Caio Camargo Silveira
-Luiza Rodrigues
+Luiz Gabriel Macedo da Silva  
+Caio Camargo Silveira  
+Luiza Rodrigues  
