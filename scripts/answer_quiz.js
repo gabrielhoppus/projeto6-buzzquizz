@@ -23,6 +23,7 @@ function getId(){
     promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizID}`)
     promise.then(deuCerto);
     promise.catch(deuruim);
+    return quizID
 }
 
 function deuCerto(resposta){
@@ -52,13 +53,12 @@ function RenderQuizz(){
     for (let i = 0; i < questions.length; i++){
     questions[i].answers.sort(Comparator)
         quizQuestions.innerHTML += 
-        `<div class="divider">
-        <div class="question_header now" style="background-color:${questions[i].color}">
-            <span>${questions[i].title}</span>        
-        </div>
-        <div class="answers">
- 
-        </div>
+        `<div class="divider now">
+            <div class="question_header" style="background-color:${questions[i].color}">
+                <span>${questions[i].title}</span>        
+            </div>
+            <div class="answers">
+            </div>
         </div>
         `
         list = answer[i]
@@ -66,22 +66,19 @@ function RenderQuizz(){
 
         for(let j = 0; j < list.length; j++){
         if(list[j].isCorrectAnswer === true){
-           container[i].innerHTML += `   
+            container[i].innerHTML += `   
                     
                 <div class="question_answer correct hidden" onclick="addChoice(this)">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
-                </div>   
-          
+                </div>
         `;
         } else{
             container[i].innerHTML += `   
-                             
                 <div class="question_answer incorrect hidden" onclick="addChoice(this)">
                     <img src="${questions[i].answers[j].image}">
                     <p>${questions[i].answers[j].text}</p>
                 </div>   
-                   
         `;
         }
         }
@@ -89,23 +86,20 @@ function RenderQuizz(){
 }
 
 function addChoice(selected){
-   selected.classList.add('selected');
-   if(selected.classList.contains('correct')){
+    currentQuestion = document.querySelector(".now")
+    currentQuestion.classList.remove("now")
+    selected.classList.add('selected');
+    if(selected.classList.contains('correct')){
     success++;
-   }
-   attempts++;
-   let options = selected.parentNode.parentNode.querySelectorAll('.question_answer');
-   console.log(options);
-   let scroll = selected.parentNode.parentNode.parentNode.parentNode.querySelectorAll('.question_answer');
-   console.log(options);
-   for (let i = 0; i < options.length; i++){
-    if(!options[i].classList.contains('selected')){
-        options[i].classList.add('imgOpacity');
-        options[i].classList.remove('hidden');
-        scroll[i].classList.remove('now');
-    }else{
-        scroll[i].classList.remove('now');
     }
+    attempts++;
+    let options = selected.parentNode.parentNode.querySelectorAll('.question_answer');
+    let scroll = selected.parentNode.parentNode.parentNode.parentNode.parentNode.querySelectorAll('.question_answer');
+    for (let i = 0; i < options.length; i++){
+        if(!options[i].classList.contains('selected')){
+            options[i].classList.add('imgOpacity');
+            options[i].classList.remove('hidden');
+        }
 }
 setTimeout(scrollQuestion,2000);
 setTimeout(upLevel,2000);
@@ -116,6 +110,10 @@ function scrollQuestion(){
     nowElement.scrollIntoView();
 }
 
+function quizzReload(){
+    window.location.reload()
+}
+
 function upLevel(){
 if(attempts === quizInfo.questions.length) {
         const result = Math.round((success/attempts)*100);
@@ -124,19 +122,19 @@ if(attempts === quizInfo.questions.length) {
             if (result >= quizInfo.levels[i].minValue) {
 
         resultQuizz.innerHTML += `
- <div class="result_header">
-            <p>${result}% de acerto: ${quizInfo.levels[i].title}</p>
-        </div>
-        <div class="result_body">
-            <img src="${quizInfo.levels[i].image}">
-            <p>${quizInfo.levels[i].text}</p>
-        </div>
+            <div class="result_header">
+                        <p>${result}% de acerto: ${quizInfo.levels[i].title}</p>
+                    </div>
+                    <div class="result_body">
+                        <img src="${quizInfo.levels[i].image}">
+                        <p>${quizInfo.levels[i].text}</p>
+                    </div>
 
-        <div class="final_container">
-    <button class="restart_btn" onclick="window.location.reload();">Reiniciar Quizz</button>
-    <span class="home_btn" onclick="location.href='../index.html'">Voltar pra home</span>
-</div>
-`;
+                    <div class="final_container">
+                <button class="restart_btn" onclick="quizzReload();">Reiniciar Quizz</button>
+                <span class="home_btn" onclick="location.href='../index.html'">Voltar pra home</span>
+            </div>
+            `;
 
 const final = document.querySelector('.result_container');
 
@@ -145,7 +143,6 @@ function scrollResult() {
 }
 
 setTimeout(scrollResult, 2000);
-
 
 break;
             }

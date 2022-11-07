@@ -406,7 +406,13 @@ function returnHome(){
     ThirdPageList.innerHTML = "";
     window.location.href='../index.html';
 }
+
 let meuQuizzId = ""
+let listaIds = ""
+let lista = []
+let listaIdsSerializada = ""
+let listaJson = []
+
 function promisseQuizzOk(response){
     let meuQuizz = response.data; /* objeto do quizz*/
     meuQuizzId = meuQuizz.id; /* id do quiz que vc criou*/
@@ -416,6 +422,13 @@ function promisseQuizzOk(response){
         questions: [],
         levels: []
         };
+
+    lista.push(meuQuizzId)
+    listaIds = localStorage.getItem("lista")
+    listaJson = JSON.parse(listaIds)
+    listaIdsSerializada = JSON.stringify(lista)
+    localStorage.setItem("lista", listaIdsSerializada)
+
     return meuQuizzId
 }
 
