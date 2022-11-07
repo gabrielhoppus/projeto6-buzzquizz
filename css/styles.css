@@ -602,6 +602,11 @@ background-color: #FFFFFF;
 margin-bottom: 48px;
 }
 
+.quizz_box img{
+    width: 340px;
+    height: 181px;
+}
+
 
 @media only screen and (max-width: 600px){
     body{
@@ -730,6 +735,5 @@ margin-bottom: 48px;
     .home_btn{
         padding-top: 30px;
     }
-
 
 }
